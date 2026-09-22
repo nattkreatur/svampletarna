@@ -1,0 +1,21 @@
+body{
+    background-color: mediumturquoise;
+    
+}
+#wrapper{
+    margin: 0 auto; /*Centrering av innehåll*/
+    min-height: 97vh;
+    display: grid; /*behövs gridtemplaterows osv*/
+    background-color: bisque;
+}
+
+/*/////////////
+    TEXT
+/////////////*/
+h1{
+    display: flex;
+    justify-content: center;
+}
+form{
+    visibility: visible;/*hidden*/
+}
