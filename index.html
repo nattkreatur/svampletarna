@@ -13,17 +13,32 @@
             <h1>Föreningen Svampletarna</h1>
         </header>
         <main>
-            <form>
+
+            <form id="logInForm">
                 <h2>Logga in:</h2>
+                
                 <label for="user">Namn</label>
                 <input type="text" name="user" id="user"><br><br>
 
                 <label for="pwd">Lösenord</label>
-                <input type="password" name="pwd" id="pwd">
-
+                <input type="password" name="pwd" id="pwd"><br>
+                <p id="error"></p>
                 <input type="submit" value="Logga in">
+                
+
+
             </form>
+
+            <section id="welcomePage">
+                <article>
+                    <p id="welcomeMessage"></p>
+                    <button id="logOut">Logga ut</button>
+                </article>
+            </section>
         </main>
+        <footer>
+            <p>&copy;Svampletarna</p>
+        </footer>
     </div>
 </body>
 </html>
