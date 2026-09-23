@@ -6,7 +6,6 @@ let welcomePage = document.getElementById("welcomePage");
 let logInForm = document.getElementById("logInForm");
 let formRef; //referens för smidigare hänvisning till formuläret
 
-//Körs när sidan har laddats
 function init(){
     //Hämtar inloggningsformuläret och kör funktionen "event", men bara om användaren trycker på knappen submit.
     formRef = document.querySelector("form");
@@ -15,20 +14,25 @@ function init(){
         getLoginData();
         checkLogin(); 
     });
+
+    //Logga ut knapp
+    document.getElementById("logOut").addEventListener("click", event =>{
+    localStorage.removeItem("loggedIn");
+    checkLogin();
+    });
+    
     checkLogin(); //kollar om användaren redan är inloggad när sidan laddas/refreshas
 }
-window.onload = init; //kör init efter att html har laddats
 
-
+//Sköter inloggning av användare samt felmeddelande vid misslyckad inloggning
 function getLoginData(){
     let user = formRef.elements.user.value;
-    console.log(user);
     let pwd = formRef.elements.pwd.value;
-    console.log(pwd);
-
-    //Uppdaterar status om användaren loggar in.
+    
     if (user === namn && pwd === lösenord){
+        //Uppdaterar status om användaren loggar in.
         localStorage.setItem("loggedIn", "true"); //nyckel och värde("true" är en string, inte en boolean)
+
     } else {
         document.getElementById("error").textContent = "Felaktiga inloggningsuppgifter";
     }
@@ -37,22 +41,17 @@ function getLoginData(){
 //System för att se om användare är inloggad
 function checkLogin(){
     let loggedIn = localStorage.getItem("loggedIn");
-    if (loggedIn == "true"){
+    if (loggedIn === "true"){
         logInForm.style.display = "none"; //döljer inloggningsformulär
-        
         welcomePage.style.display = "block"; //Visar välkomstsida
-        document.getElementById("welcomeMessage").textContent = //Skapar välkomstmeddelande
+
+        //Skapar välkomstmeddelande på välkomstsidan som styrs av checkLogin
+        document.getElementById("welcomeMessage").textContent = 
         "Välkommen " + namn + ", du är nu inloggad.";
+        
     } else {
         logInForm.style.display = "block"; //visa inloggningsformulär
         welcomePage.style.display = "none"; //Döljer välkomstsida
     }
 }
-
-//formuläret ska döljas, display=hidden
-document.getElementById("logOut").addEventListener("click", event =>{
-    localStorage.removeItem("loggedIn");
-    checkLogin();
-});
-/*logga ut ska finnas
-localStorage.removeItem("loggedIn"); */
+init(); //startar initfunktionen
