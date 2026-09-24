@@ -18,7 +18,7 @@ function init(){
 
     //Logga ut knapp
     document.getElementById("logOut").addEventListener("click", event =>{
-    localStorage.removeItem("loggedIn");
+    localStorage.clear(); //tömmer localstorage
     checkLogin();
     });
     
