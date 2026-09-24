@@ -1,48 +1,111 @@
-*{
-    box-sizing: border-box;
-}
 
 body{
-    background-color: #EDECEC;
+    background-color: #E0E7D7;
     margin: 0;
     color: #333333; /*Behaglig lättläst färg*/
 }
 #wrapper{
-    margin: 0 auto; /*Centrering av innehåll*/
-    min-height: 97vh;
+    /*margin: 0 auto; /*Centrering av innehåll*/
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: 0.5rem;
+    min-height: 100vh;
     
     background-color: #E0E7D7;
-    
 }
 header, footer{
     background-color: #B7C396;
 }
+header{
+    position: relative;
+}
 header > img {
     width: 100%;
     display: block;
+}
+main{
+    display: flex;
+    justify-content: center;
+    background-color: #B7C396;
+    padding: 2rem;
+
+}
+form{
+    visibility: visible;/*hidden*/
+    border-left: 4px solid #BA9A91;
+    padding: 1rem;
+}
+form > h2, #error, input[type="submit"]{
+    margin-left: 5.25rem;
+}
+label{
+    /*Sätter inputrutorna jämnt i sidled*/
+    display: inline-block;
+    width: 5rem;
+}
+input[type="text"], input[type="password"]{
+    background-color: #E0E7D7;
+}
+input:-webkit-autofill {
+    /*Stoppar webbläsarens autoifyll från att köra över CSS-reglerna*/
+    -webkit-text-fill-color: #333333;
+    -webkit-box-shadow: 0 0 0 1000px #E0E7D7 inset;
+}
+#error{
+    color: red;
+    /*margin-left: 5.25rem;*/
+}
+input[type="submit"], button{
+    margin-top: 1rem;
+    padding: 0.25rem;
+    color: #333333;
+    background-color: #E0E7D7;
     
+}
+
+#welcomePage > article{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer{
+    text-align: center;
+    padding: 1rem;
 }
 /*/////////////
     TEXT
 /////////////*/
-header{
-    position: relative;
-    
-}
 h1{
     color: white;
     background-color: #333333;
-    opacity: 75%;
+    opacity: 80%;
     border-radius: 1rem;
     padding: 1rem;
-    /*Rubrik ovanpå bilden*/
+
+    /*Rubrik framför bilden*/
     position: absolute;
-    top: 20%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
 }
-form{
-    visibility: visible;/*hidden*/
-    background-color: #B7C396;
+
+@media(min-width: 600px){
+    #wrapper{
+        margin: 0 auto;
+        max-width: 1000px;
+    }
+    header{
+        /*Begränsar headerns storlek i desktop*/
+        height: clamp(200px, 35vh, 600px);/*minsta, föredragna och högsta värde*/
+        /*"croppar" bilden så den inte blir för stor*/
+        overflow: hidden;
+    }
+    header img{
+        /*Ser till så att fokus stannar vid bildens mitt*/
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+    }
 }

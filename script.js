@@ -2,9 +2,10 @@
 const namn = "Kalle";
 const lösenord = "qwe123";
 
+//för smidigare referens av html-element
 let welcomePage = document.getElementById("welcomePage");
 let logInForm = document.getElementById("logInForm");
-let formRef; //referens för smidigare hänvisning till formuläret
+let formRef; 
 
 function init(){
     //Hämtar inloggningsformuläret och kör funktionen "event", men bara om användaren trycker på knappen submit.
