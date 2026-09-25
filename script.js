@@ -5,13 +5,14 @@ const lösenord = "qwe123";
 //för smidigare referens av html-element
 let welcomePage = document.getElementById("welcomePage");
 let logInForm = document.getElementById("logInForm");
+let error = document.getElementById("error");
 let formRef; 
 
 function init(){
     //Hämtar inloggningsformuläret och kör funktionen "event", men bara om användaren trycker på knappen submit.
     formRef = document.querySelector("form");
     formRef.addEventListener("submit", event =>{
-        event.preventDefault();
+        event.preventDefault(); //stoppar htmls vanliga formulärhantering. JS sköter hanteringen istället
         getLoginData();
         checkLogin(); 
     });
@@ -33,9 +34,10 @@ function getLoginData(){
     if (user === namn && pwd === lösenord){
         //Uppdaterar status om användaren loggar in.
         localStorage.setItem("loggedIn", "true"); //nyckel och värde("true" är en string, inte en boolean)
-
+        error.style.display = "none"; //tar bort felmeddelande vid inloggning
     } else {
-        document.getElementById("error").textContent = "Felaktiga inloggningsuppgifter";
+        error.textContent = "Felaktiga inloggningsuppgifter";
+        error.style.display = "block"; //visar felmeddelande, detta krävs om man har loggat ut och försöker logga in igen
     }
 }
 
